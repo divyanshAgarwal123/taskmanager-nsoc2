@@ -11,7 +11,8 @@
     "unrelatedThemeIgnored": true,
     "corruptStoragePreserved": true,
     "removeDoesNotResurrect": true,
-    "unsupportedLockReadOnly": true
+    "unsupportedLockReadOnly": true,
+    "failedUndoCanRetry": true
   },
   {
     "mode": "production",
@@ -25,6 +26,7 @@
     "unrelatedThemeIgnored": true,
     "corruptStoragePreserved": true,
     "removeDoesNotResurrect": true,
-    "unsupportedLockReadOnly": true
+    "unsupportedLockReadOnly": true,
+    "failedUndoCanRetry": true
   }
 ]

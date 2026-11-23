@@ -1,20 +1,21 @@
 {
   "issue": "https://github.com/qwerty274/taskmanager-nsoc2/issues/51",
-  "head": "bef6b84f8d34297a67db5e0236a121567f7fcf81",
+  "head": "0c79e40e7ade65120681fe04b48e75cfdaef3eb3",
   "parent": "be9fea04e331b8a3e08c22fe4f4572f2555dff67",
   "assignmentAt": "2026-11-23T19:04:14Z",
   "notes": [
     "Web Locks serialize task mutations with latest snapshot reads. Unsupported browsers get explicit read-only controls.",
     "Both Vite development and built preview were tested in two real Chrome tabs.",
-    "103 Node tests, clean npm ci from project directory and Vite build passed."
+    "103 Node tests, clean npm ci from project directory and Vite build passed.",
+    "Failed undo persistence preserves the undo entry for a retry; tested in both browser modes."
   ],
   "files": {
-    "task51-production-populated.png": "9e8c5908ce054c3e971622477bc623eda12a361b4e07fb4c5506ce64b9bc82dc",
+    "task51-production-populated.png": "3acdcdd89102aeebc7feeec0e31e506fdb2b27cb40e57a3cd7f4d6dcd9afb2d0",
     "task51-mobile.json": "826166de6de459abd5175bf54e2d23bcc3e266576dc601033a50eaede3fa7d47",
-    "browser.mjs": "6512b1a0916ca17ed42d30fff24165c6423d9b2d985fe5dc232e12b5ab2cd181",
-    "task51-tests.log": "7d5630e42db7956f02ffd8dcb798249d0284578bdec7e75b32adebf36aadf4bf",
-    "task51-browser.json": "22901f3f270a13c39fd27ca8b4359fcde61bf027ec5a21d50a5203d2815fbc48",
-    "task51-build.log": "94779736bb693a4ddc8241794e4ebc5950d00e5abe9b74bc49e087b0ab555546",
+    "browser.mjs": "715d102aeb4d12aafc4d2b161a3cb2bf2402c62aafa7967c27c49d2d9efb1905",
+    "task51-tests.log": "9f18c9d1c5472aca56066b3b81fd39531426c6905ca7b09633caf743688b3c97",
+    "task51-browser.json": "3f5b1eb37b4365d2b81154bd49c14d9db756fa904e0913f25772afd4cbbd9576",
+    "task51-build.log": "fe7df43e1350ad8602ac7f3375d9f8163fe2e567bebba7844fa98525eeba6f2b",
     "task51-mobile.png": "9182886e53fc6c0e5657c9451d334f22eaa4b14cc7f24d2f3247e90c8df62a0a"
   }
 }

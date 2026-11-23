@@ -19,12 +19,21 @@ try {
   await a.locator('.edit-input').fill('Alpha edited');
   await a.locator('.edit-input').press('Enter');
   await waitText(b,'Alpha edited');
-  await b.getByRole('button',{name:'Move Beta up',exact:true}).click();
-  await a.waitForFunction(()=>JSON.parse(localStorage.getItem('tasks'))[0].text==='Beta');
-  const arr=await tasks(a);assert.equal(arr[1].text,'Alpha edited');
+  const betaFirst=(await tasks(b))[0].text==='Beta';
+  await b.getByRole('button',{name:betaFirst?'Move Beta down':'Move Beta up',exact:true}).click();
+  await a.waitForFunction(first=>JSON.parse(localStorage.getItem('tasks'))[0].text===first,betaFirst?'Alpha edited':'Beta');
+  const arr=await tasks(a);assert.equal(arr.length,2);
   await b.getByRole('button',{name:'Delete task Beta',exact:true}).click();
   await a.waitForFunction(()=>JSON.parse(localStorage.getItem('tasks')).length===1);
   await a.waitForFunction(()=>document.querySelectorAll('.task-title').length===1);
+  await b.evaluate(()=>{
+   window.originalStorageWrite=Storage.prototype.setItem;
+   Storage.prototype.setItem=function(key,value){if(key==='tasks')throw new DOMException('Blocked test write','QuotaExceededError');return window.originalStorageWrite.call(this,key,value);};
+  });
+  await b.getByRole('button',{name:/Undo/}).first().click();
+  await b.getByRole('alert').filter({hasText:'Tasks were not saved'}).waitFor();
+  assert.equal((await tasks(b)).length,1);
+  await b.evaluate(()=>{Storage.prototype.setItem=window.originalStorageWrite;});
   await b.getByRole('button',{name:/Undo/}).first().click();
   await waitText(a,'Beta');
   const alpha=a.locator('li').filter({has:a.getByRole('button',{name:'Delete task Alpha edited',exact:true})});
@@ -53,7 +62,7 @@ try {
   await p.getByRole('alert').filter({hasText:'read-only'}).waitFor();
   assert.equal(await p.getByRole('button',{name:'Add task',exact:true}).isDisabled(),true);
   await fallback.close();
-  reports.push({mode,twoTabs:true,concurrentAdds:2,edit:true,reorder:true,delete:true,undo:true,completion:true,unrelatedThemeIgnored:true,corruptStoragePreserved:true,removeDoesNotResurrect:true,unsupportedLockReadOnly:true});
+  reports.push({mode,twoTabs:true,concurrentAdds:2,edit:true,reorder:true,delete:true,undo:true,completion:true,unrelatedThemeIgnored:true,corruptStoragePreserved:true,removeDoesNotResurrect:true,unsupportedLockReadOnly:true,failedUndoCanRetry:true});
  }
 }finally{await browser.close();}
 await fs.writeFile(out+'/task51-browser.json',JSON.stringify(reports,null,2)+'\n');console.log(reports);
