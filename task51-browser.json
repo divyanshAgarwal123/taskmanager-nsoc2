@@ -1,0 +1,30 @@
+[
+  {
+    "mode": "development",
+    "twoTabs": true,
+    "concurrentAdds": 2,
+    "edit": true,
+    "reorder": true,
+    "delete": true,
+    "undo": true,
+    "completion": true,
+    "unrelatedThemeIgnored": true,
+    "corruptStoragePreserved": true,
+    "removeDoesNotResurrect": true,
+    "unsupportedLockReadOnly": true
+  },
+  {
+    "mode": "production",
+    "twoTabs": true,
+    "concurrentAdds": 2,
+    "edit": true,
+    "reorder": true,
+    "delete": true,
+    "undo": true,
+    "completion": true,
+    "unrelatedThemeIgnored": true,
+    "corruptStoragePreserved": true,
+    "removeDoesNotResurrect": true,
+    "unsupportedLockReadOnly": true
+  }
+]
